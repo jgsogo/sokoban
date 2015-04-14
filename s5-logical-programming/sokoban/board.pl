@@ -22,12 +22,17 @@ opposite_dir(right, left).
 
 % Neighbourhood
 neib(P1, P2, up) :- top(P1, P2).
-neib(P1, P2, down) :- bottom(P1, P2).
+neib(P1, P2, down) :- top(P2, P1).
 neib(P1, P2, right) :- right(P1, P2).
-neib(P1, P2, left) :- left(P1, P2).
+neib(P1, P2, left) :- right(P2, P1).
 
 %bottom(P1, P2) :- top(P2, P1).
 %left(P1, P2) :- right(P2, P1).
+
+% Corners
+corner(X) :- \+ noncorner(X).
+noncorner(X) :- top(_,X),top(X,_).
+noncorner(X) :- right(_,X),right(X,_).
 
 
 %%%%%%%%%%%%%%%%%%%%%%
