@@ -3,18 +3,15 @@
 % by Javier G. Sogo
 
 
-%:-include(board).
+:-include(board).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Game rules:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% All items should be placed over the board.
-validPos(X, Y) :- isBoard(X, Y).
-
 % Movimientos del Sokoban
-move(
-
+push(pos1, dir, pos2) :-
+              box(pos1),
+              neib(pos1, pos2, dir).
 
 
 
