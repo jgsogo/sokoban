@@ -51,6 +51,11 @@ right(point(X,Y), point(Z,Y)) :-
 left(X,Y) :- right(Y,X).
 
 
+% Neighbourhood
+neib(P1, P2, up) :- top(P1, P2).
+neib(P1, P2, down) :- bottom(P1, P2).
+neib(P1, P2, right) :- right(P1, P2).
+neib(P1, P2, left) :- left(P1, P2).
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -107,6 +112,15 @@ left(X,Y) :- right(Y,X).
               test(right, [fail]) :- right(point(5,2), point(6,2)).
               test(right, [fail]) :- right(point(5,2), point(4,3)).
               
+              % neighbourhood
+              test(neib_up) :- neib(point(2,2), point(2,1), up).
+              test(neib_up, [fail]) :- neib(point(2,2), point(2,1), X), \+ X==up.
+              test(neib_down) :- neib(point(2,1), point(2,2), down).
+              test(neib_down, [fail]) :- neib(point(2,1), point(2,2), X), \+ X==down.
+              test(neib_right) :- neib(point(2,2), point(1,2), right).
+              test(neib_right, [fail]) :- neib(point(2,2), point(1,2), X), \+ X==right.
+              test(neib_left) :- neib(point(2,2), point(3,2), left).
+              test(neib_left, [fail]) :- neib(point(2,2), point(3,2), X), \+ X==left.
 :- end_tests(board).
 
 :- run_tests.
