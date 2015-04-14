@@ -1,4 +1,4 @@
-% sokoban1.pl: implementation of a solver for the Sokoban puzzle
+% sokoban\board.pl: board for the Sokoban puzzle
 %     ... learning Prolog with SWI-Prolog
 % by Javier G. Sogo
 
@@ -123,4 +123,4 @@ neib(P1, P2, left) :- left(P1, P2).
               test(neib_left, [fail]) :- neib(point(2,2), point(3,2), X), \+ X==left.
 :- end_tests(board).
 
-:- run_tests.
+%:- run_tests.
