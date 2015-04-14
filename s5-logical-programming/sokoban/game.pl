@@ -55,17 +55,6 @@ good_move(X, Boxes) :-
     foreach(member(Box, Boxes), \+ stuck(X, Box)).
 
 
-% Elección: hacia dónde empujar una caja
-choose_push_destination(Box, NextLoc, Dir, Dest, NewSokoban, _BoxLocs, Action) :-
-    Dest = NextLoc,
-    NewSokoban = Box,
-    Action = push(Box, Dir, Dest).
-choose_push_destination(Box, NextLoc, Dir, Dest, NewSokoban, _BoxLocs, Action) :-
-    neib(NextLoc,NextNextLoc, Dir),
-    good_move(NextNextLoc, BoxLocs),
-    choose_a_push_destination(Box, NextNextLoc, Dir, Dest, NewSokoban, BoxLocs, Action).
-
-
 /* movement(State, Move) */
 movement(state(Sokoban, Boxes), move(Box, Dir)) :-
     neib(Box, NextLoc, Dir),

@@ -26,10 +26,9 @@ solve_dfs(Problem, State, History, [Move|Moves]) :-
 
 % Actually solve the problem
 solve_problem(Problem, Solution) :-
+    format('Problem: ~w', Problem),
     initial_state(Problem, Initial),
     solve_dfs(Problem, Initial, [Initial], [Solution]).
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%
