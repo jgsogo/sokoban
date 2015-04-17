@@ -14,8 +14,8 @@
 %    Boxes=[]
 
 /* Aserción del final_state */
-final_state(sokoban, state(_Sokoban, Boxes)) :-
-    all_boxes_in_solution(Boxes).
+%final_state(sokoban, state(_Sokoban, Boxes)) :-
+%    all_boxes_in_solution(Boxes).
 
 
 /* Representación de un MOVIMIENTO-PUSH */
@@ -57,10 +57,9 @@ good_move(X, Boxes) :-
 
 /* movement(State, Move) */
 movement(state(Sokoban, Boxes), move(Box, Dir)) :-
-    neib(Box, NextLoc, Dir),
-    good_move(NextLoc, Boxes),
-    neib(PushPosition, Box, Dir),
-    can_reach(Sokoban, PushPosition, Boxes).
+    select(Box, Boxes, BoxesRemain),
+    neib(Box, NextLoc, Dir), good_move(NextLoc, BoxesRemain),
+    neib(PushPosition, Box, Dir), can_reach(Sokoban, PushPosition, Boxes).
 
 
 /* update(State, Move, NewState) */
