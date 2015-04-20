@@ -59,7 +59,9 @@ good_move(X, Boxes) :-
 movement(state(Sokoban, Boxes), move(Box, Dir)) :-
     select(Box, Boxes, BoxesRemain),
     neib(Box, NextLoc, Dir), good_move(NextLoc, BoxesRemain),
-    neib(PushPosition, Box, Dir), can_reach(Sokoban, PushPosition, Boxes).
+    neib(PushPosition, Box, Dir), /*can_reach(Sokoban, PushPosition, Boxes),*/
+    format('Box: ~w [> ~w >] ~w~n', [Box, Dir, NextLoc]).
+
 
 
 /* update(State, Move, NewState) */
