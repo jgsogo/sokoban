@@ -20,14 +20,20 @@ solve_dfs(Problem, State, _History, []) :-
 solve_dfs(Problem, State, History, [Move|Moves]) :-
     movement(State, Move),
     update(State, Move, NewState),
+    format('|| State: ~w~n', State),
+    format('|| Move: ~w~n', Move),
+    format('|| NewState: ~w~n', NewState),
     /*legal_state(NewState),          Puede ser duplicado */
     \+ member(NewState, History),   /* No quiero ciclos en el grafo de búsqueda */
     solve_dfs(Problem, NewState, [NewState|History], Moves).
 
 % Actually solve the problem
 solve_problem(Problem, Solution) :-
-    format('Problem: ~w', Problem),
+    format('=============~n'),
+    format('|| Problem: ~w~n', Problem),
+    format('=============~n'),
     initial_state(Problem, Initial),
+    format('Initial state: ~w~n', Initial),
     solve_dfs(Problem, Initial, [Initial], [Solution]).
 
 

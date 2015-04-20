@@ -14,8 +14,9 @@
 %    Boxes=[]
 
 /* Aserción del final_state */
-%final_state(sokoban, state(_Sokoban, Boxes)) :-
-%    all_boxes_in_solution(Boxes).
+final_state(sokoban, state(_Sokoban, Boxes)) :-
+    format('-> Check state: ~w ~n', Boxes),
+    all_boxes_in_solution(Boxes), !.
 
 
 /* Representación de un MOVIMIENTO-PUSH */
@@ -29,6 +30,7 @@
 all_boxes_in_solution([]).
 all_boxes_in_solution([Box|Boxes]) :-
     solution(Box),
+    format('    Box in solution!: ~w ~n', Box),
     all_boxes_in_solution(Boxes).
 
 % Comprobar si el Sokoban puede alcanzar arg[2] desde arg[1]
@@ -67,7 +69,7 @@ movement(state(Sokoban, Boxes), move(Box, Dir)) :-
 /* update(State, Move, NewState) */
 update(state(_Sokoban, Boxes), move(Box, Dir), state(NewSokoban, NewBoxes)) :-
     NewSokoban = Box,
-    subtract(Boxes, Box, TempList),
+    subtract(Boxes, [Box], TempList),
     neib(Box, NewPosition, Dir),
     append(TempList, [NewPosition], NewBoxes).
 
