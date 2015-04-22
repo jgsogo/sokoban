@@ -68,6 +68,7 @@ movement(state(Sokoban, Boxes), move(Box, Dir)) :-
     neib(Box, NextLoc, Dir), good_move(NextLoc, BoxesRemain),
     neib(PushPosition, Box, Dir), /*can_reach(Sokoban, PushPosition, Boxes),*/
     \+ member(PushPosition, Boxes),
+    format('  .PushPosition: ~w~n', [PushPosition]),
     format('  .Dir: ~w~n', [Dir]),
     format('  .NextLoc: ~w~n', [NextLoc]),
     format('< movement~n').
