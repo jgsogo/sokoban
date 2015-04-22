@@ -17,7 +17,7 @@
 final_state(sokoban, state(_Sokoban, Boxes)) :-
     format('~n   > final_state(sokoban, state(_Sokoban, Boxes))~n'),
     format('     Boxes: ~w~n', [Boxes]),
-    all_boxes_in_solution(Boxes),
+    all_boxes_in_solution(Boxes), !,
     format('    < final_state~n').
 
 
