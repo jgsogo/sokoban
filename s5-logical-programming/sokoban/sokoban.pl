@@ -26,7 +26,7 @@ solve_dfs(Problem, State, History, [Move|Moves]) :-
     update(State, Move, NewState),
     format(' == NewState: ~w~n', NewState),
     /*legal_state(NewState),          Puede ser duplicado */
-    %\+ member(NewState, History),   /* No quiero ciclos en el grafo de búsqueda */
+    \+ member(NewState, History),   /* No quiero ciclos en el grafo de búsqueda */
     solve_dfs(Problem, NewState, [NewState|History], Moves).
 
 % Actually solve the problem
