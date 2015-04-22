@@ -15,8 +15,10 @@
 
 /* Aserción del final_state */
 final_state(sokoban, state(_Sokoban, Boxes)) :-
-    format('-> Check state: ~w ~n', Boxes),
-    all_boxes_in_solution(Boxes), !.
+    format('~n   > final_state(sokoban, state(_Sokoban, Boxes))~n'),
+    format('     Boxes: ~w~n', [Boxes]),
+    all_boxes_in_solution(Boxes),
+    format('    < final_state~n').
 
 
 /* Representación de un MOVIMIENTO-PUSH */
@@ -59,19 +61,29 @@ good_move(X, Boxes) :-
 
 /* movement(State, Move) */
 movement(state(Sokoban, Boxes), move(Box, Dir)) :-
+    format('~n> movement(state(Sokoban, Boxes), move(Box, Dir))~n'),
+    format('  Boxes: ~w~n', [Boxes]),
     select(Box, Boxes, BoxesRemain),
+    format('  .Box: ~w~n', [Box]),
     neib(Box, NextLoc, Dir), good_move(NextLoc, BoxesRemain),
     neib(PushPosition, Box, Dir), /*can_reach(Sokoban, PushPosition, Boxes),*/
-    format('Box: ~w [> ~w >] ~w~n', [Box, Dir, NextLoc]).
+    \+ member(PushPosition, Boxes),
+    format('  .Dir: ~w~n', [Dir]),
+    format('  .NextLoc: ~w~n', [NextLoc]),
+    format('< movement~n').
 
 
 
 /* update(State, Move, NewState) */
 update(state(_Sokoban, Boxes), move(Box, Dir), state(NewSokoban, NewBoxes)) :-
+    format('~n> update(state(_Sokoban, Boxes), move(Box, Dir), state(NewSokoban, NewBoxes))~n'),
     NewSokoban = Box,
     subtract(Boxes, [Box], TempList),
     neib(Box, NewPosition, Dir),
-    append(TempList, [NewPosition], NewBoxes).
+    append(TempList, [NewPosition], NewBoxes),
+    format('  NewSokoban: ~w~n', [NewSokoban]),
+    format('  NewBoxes: ~w~n', [NewBoxes]),
+    format('< update~n').
 
 
 
