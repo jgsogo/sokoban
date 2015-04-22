@@ -36,7 +36,7 @@ solve_problem(Problem, Solution) :-
     format('=============~n'),
     initial_state(Problem, Initial),
     format('Initial state: ~w~n', Initial),
-    solve_dfs(Problem, Initial, [Initial], [Solution]),
+    solve_dfs(Problem, Initial, [Initial], Solution),
     format('< solve_problem~n').
 
 
