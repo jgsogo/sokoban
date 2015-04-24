@@ -12,9 +12,15 @@ the solution/storage positions are.
 
 For example, `level1.pl` defines the following board:
 
+```
++---+---+---+
 |   |   |   |
++---+---+---+
 |   | X | X |
++---+---+---+
 | S | · | · |
++---+---+---+
+```
 
 where:
 
