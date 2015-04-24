@@ -85,3 +85,13 @@ Solution = [move(x3y2, up), move(x2y2, up)] ;
 The same combination of movements is repeated because the Sokoban can use different paths
 to reach each push location.
 
+
+## TODO
+
+There is a lot of work ahead, for example:
+
+ * What about the [level that fails](./sokoban/level_fail.pl)?
+ * Use `can_reach\4` without duplicating solutions.
+
+Pull requests are more than welcome, of course ;D
+
