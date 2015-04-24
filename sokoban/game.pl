@@ -87,11 +87,16 @@ stuck(X, Y) :-
 
 /* The Sokoban can move to any empty position in the board, but cannot go  */
 /* through boxes.                                                          */
-can_reach(P1, P1, _Boxes).
-can_reach(P1, P2, Boxes) :-
+can_reach(P1, P1, _Boxes, _Visited).
+can_reach(P1, P2, Boxes, _Visited) :-
+    neib(P1, P2, _),
+    \+ member(P2, Boxes).
+can_reach(P1, P2, Boxes, Visited) :-
     neib(P1, P3, _),
+    P3 \== P2,
+    \+ member(P3, Visited),
     \+ member(P3, Boxes),
-    can_reach(P3, P2, Boxes).
+    can_reach(P3, P2, Boxes, [P3|Visited]).
 
 /* A good place to move a box is one that:                                 */
 /*  - is not already occupied by a box.                                    */
@@ -109,7 +114,7 @@ movement(state(Sokoban, Boxes), move(Box, Dir)) :-
     neib(Box, NextLoc, Dir),
     good_move(NextLoc, BoxesRemain),
     neib(PushPosition, Box, Dir),
-    /*can_reach(Sokoban, PushPosition, Boxes),*/
+    can_reach(Sokoban, PushPosition, Boxes, []),
     \+ member(PushPosition, Boxes).
 
 
