@@ -4,16 +4,16 @@
 % Author: Javier G. Sogo
 
 /***************************************************************************/
-/* Sokoban board: level 2                                                  */
+/* Sokoban board: level 3                                                  */
 /***************************************************************************/
-/* It is a 3x3 board with two boxes and two storage positions              */
+/* It is a 3x3 board with three boxes                                      */
 /*                                                                         */
 /*  +---+---+---+                                                          */
-/*  |   | X | . |                                                          */
+/*  | S | X | . |                                                          */
 /*  +---+---+---+                                                          */
 /*  |   | X |   |                                                          */
 /*  +---+---+---+                                                          */
-/*  | S | · |   |                                                          */
+/*  |   | X·| · |                                                          */
 /*  +---+---+---+                                                          */
 /*                                                                         */
 /***************************************************************************/
@@ -36,13 +36,15 @@ right(x2y1, x3y1).
 /* Boxes initial positions                                                 */
 box(x2y3).
 box(x2y2).
+box(x2y1).
 
 /* Storage positions                                                       */
 solution(x2y1).
 solution(x3y3).
+solution(x3y1).
 
 /* Sokoban initial position                                                */
-sokoban(x1y1).
+sokoban(x1y3).
 
 /* Initial state assertion                                                 */
-initial_state(sokoban, state(x1y1, [x2y3, x2y2])).
+initial_state(sokoban, state(x1y1, [x2y3, x2y2, x2y1])).
