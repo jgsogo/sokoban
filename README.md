@@ -1,8 +1,13 @@
 # Sokoban
 
-Prolog solver of Sokoban puzzle using depth-first-search algorithm. Source files have
-their own comments.
+Prolog solver of [Sokoban puzzle](http://en.wikipedia.org/wiki/Sokoban) using
+depth-first-search (DFS) algorithm. Source files have their own comments:
 
+ * `sokoban.pl`: define DFS algorithm and include rules from `game.pl`, `board.pl` and
+   the desired level.
+ * `game.pl`: define all the rules to play Sokoban.
+ * `board.pl`: define rules related to board itself.
+ * Info about levels is given in the next section.
 
 ## Example level
 
