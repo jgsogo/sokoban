@@ -114,7 +114,7 @@ movement(state(Sokoban, Boxes), move(Box, Dir)) :-
     neib(Box, NextLoc, Dir),
     good_move(NextLoc, BoxesRemain),
     neib(PushPosition, Box, Dir),
-    can_reach(Sokoban, PushPosition, Boxes, []),
+    /*can_reach(Sokoban, PushPosition, Boxes, []),*/ /* Enable this rule to consider Sokoban movement constraint */
     \+ member(PushPosition, Boxes).
 
 
