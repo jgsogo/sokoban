@@ -9,7 +9,7 @@ depth-first-search (DFS) algorithm. Source files have their own comments:
  * `board.pl`: define rules related to board itself.
  * Info about levels is given in the next section.
 
-## Example level
+## Levels
 
 Levels are defined in separated files (see example in `level1.pl`), these files define
 the available squares in the board, where the boxes are at the beginning and where
