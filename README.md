@@ -32,7 +32,7 @@ where:
 ## Example usage
 
 File `sokoban.pl` loads the data for the desired level. By default it is `level1`,
-modify it line `sokoban.pl:46` to play with any of the provided examples or create one on your own.
+modify it in line `sokoban.pl:46` to play with any of the provided examples or create one on your own.
 Afterwards, execute the following queries in Prolog (SWI-Prolog):
 
 ```
