@@ -3,6 +3,26 @@
 Prolog solver of Sokoban puzzle using depth-first-search algorithm. Source files have
 their own comments.
 
+
+## Example level
+
+Levels are defined in separated files (see example in `level1.pl`), these files define
+the available squares in the board, where the boxes are at the beginning and where
+the solution/storage positions are.
+
+For example, `level1.pl` defines the following board:
+
+|   |   |   |
+|   | X | X |
+| S | · | · |
+
+where:
+
+ * `S`: is where the Sokoban is at the beginning.
+ * `X`: position occupied by a box.
+ * `·`: storage positions.
+
+
 ## Example usage
 
 File `sokoban.pl` loads the data for the desired level. By default it is `level1`,
@@ -26,6 +46,7 @@ Solution = [move(x3y2, down), move(x2y2, down)] ;
 ```
 
 Each line contains a sequence of movements to solve the puzzle.
+
 
 ## Sokoban path
 
