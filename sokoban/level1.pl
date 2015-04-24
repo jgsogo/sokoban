@@ -38,6 +38,3 @@ sokoban(x1y1).
 
 % Initial state assertion
 initial_state(sokoban, state(x1y1, [x2y2, x3y2])).
-
-% Final state
-% final_state(sokoban, state(_Sokoban, [x2y1, x3y1])).

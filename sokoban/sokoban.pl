@@ -18,14 +18,8 @@ solve_dfs(Problem, State, _History, []) :-
 
 % If not, we have to explore new states
 solve_dfs(Problem, State, History, [Move|Moves]) :-
-    format('~n==== Iteration ==== ~n'),
-    format(' == History: ~w~n', History),
-    format(' == Move|Moves: ~w|~w~n', [Move, Moves]),
     movement(State, Move),
-    format(' == Move: ~w~n', Move),
     update(State, Move, NewState),
-    format(' == NewState: ~w~n', NewState),
-    /*legal_state(NewState),          Puede ser duplicado */
     \+ member(NewState, History),   /* No quiero ciclos en el grafo de búsqueda */
     solve_dfs(Problem, NewState, [NewState|History], Moves).
 
@@ -36,8 +30,7 @@ solve_problem(Problem, Solution) :-
     format('=============~n'),
     initial_state(Problem, Initial),
     format('Initial state: ~w~n', Initial),
-    solve_dfs(Problem, Initial, [Initial], [Solution]),
-    format('< solve_problem~n').
+    solve_dfs(Problem, Initial, [Initial], [Solution]).
 
 
 % Clear screen

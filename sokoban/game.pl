@@ -8,21 +8,19 @@
 /* Representación de un ESTADO */
 /* state(WhereIsSokoban, [WhereAreTheBoxes]) */
 
+/* Representación de un MOVIMIENTO-PUSH */
+/* movement(BoxPosition, Direction) */
+
 /* Aserción del initial_state */
 % initial_state(sokoban, state(x1y1, [x2y2, x3y3])) :-
 %    sokoban(Sokoban),
 %    Boxes=[]
 
+
 /* Aserción del final_state */
 final_state(sokoban, state(_Sokoban, Boxes)) :-
-    format('~n   > final_state(sokoban, state(_Sokoban, Boxes))~n'),
-    format('     Boxes: ~w~n', [Boxes]),
-    all_boxes_in_solution(Boxes), !,
-    format('    < final_state~n').
+    all_boxes_in_solution(Boxes), !.
 
-
-/* Representación de un MOVIMIENTO-PUSH */
-/* movement(BoxPosition, Direction) */
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -32,7 +30,6 @@ final_state(sokoban, state(_Sokoban, Boxes)) :-
 all_boxes_in_solution([]).
 all_boxes_in_solution([Box|Boxes]) :-
     solution(Box),
-    format('    Box in solution!: ~w ~n', Box),
     all_boxes_in_solution(Boxes).
 
 % Comprobar si el Sokoban puede alcanzar arg[2] desde arg[1]
@@ -61,31 +58,18 @@ good_move(X, Boxes) :-
 
 /* movement(State, Move) */
 movement(state(Sokoban, Boxes), move(Box, Dir)) :-
-    format('~n> movement(state(Sokoban, Boxes), move(Box, Dir))~n'),
-    format('  Boxes: ~w~n', [Boxes]),
     select(Box, Boxes, BoxesRemain),
-    format('  .Box: ~w~n', [Box]),
     neib(Box, NextLoc, Dir), good_move(NextLoc, BoxesRemain),
     neib(PushPosition, Box, Dir), /*can_reach(Sokoban, PushPosition, Boxes),*/
-    \+ member(PushPosition, Boxes),
-    format('  .PushPosition: ~w~n', [PushPosition]),
-    format('  .Dir: ~w~n', [Dir]),
-    format('  .NextLoc: ~w~n', [NextLoc]),
-    format('< movement~n').
-
+    \+ member(PushPosition, Boxes).
 
 
 /* update(State, Move, NewState) */
 update(state(_Sokoban, Boxes), move(Box, Dir), state(NewSokoban, NewBoxes)) :-
-    format('~n> update(state(_Sokoban, Boxes), move(Box, Dir), state(NewSokoban, NewBoxes))~n'),
     NewSokoban = Box,
     subtract(Boxes, [Box], TempList),
     neib(Box, NewPosition, Dir),
-    append(TempList, [NewPosition], NewBoxes),
-    format('  NewSokoban: ~w~n', [NewSokoban]),
-    format('  NewBoxes: ~w~n', [NewBoxes]),
-    format('< update~n').
-
+    append(TempList, [NewPosition], NewBoxes).
 
 
 %%%%%%%%%%%%%%%%%%%%%%
